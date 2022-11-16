@@ -15,10 +15,6 @@ public class PlayerMove : MonoBehaviour
     bool jDown;
     bool isDodge;
     bool isJump;
-    bool cDown;
-    bool isFireReady;
-    bool sDown1;
-    float fireDelay;
     bool JDown;
     
 
@@ -26,15 +22,13 @@ public class PlayerMove : MonoBehaviour
     Vector3 dodgeVec;
 
     Rigidbody rigid;
-    SpriteRenderer spriteRenderer;
-    Animator anim;
+    public SpriteRenderer theSR;
+    public Animator anim;
     
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -44,20 +38,22 @@ public class PlayerMove : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         jDown = Input.GetButtonDown("Dodge");
         JDown = Input.GetButtonDown("Jump");
-        sDown1 = Input.GetButtonDown("Swap");
+
     }
 
     void Move()
     {
 
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
+
+        anim.SetBool("run", moveVec != Vector3.zero);
         
-        anim.SetBool("run",moveVec != Vector3.zero);
-        
+
         if (isDodge)
 
         moveVec = dodgeVec;
         transform.position += moveVec * Speed * Time.deltaTime;
+
 
     }
 
@@ -92,6 +88,18 @@ public class PlayerMove : MonoBehaviour
         isDodge = false;
     }
 
+    void Sprite()
+    {
+        if (!theSR.flipX && hAxis < 0)
+        {
+            theSR.flipX = true;
+        }
+
+        else if (theSR.flipX && hAxis > 0)
+        {
+            theSR.flipX = false;
+        }
+    }
    
     private void OnCollisionEnter(Collision collision)
     {
@@ -110,8 +118,8 @@ public class PlayerMove : MonoBehaviour
         Move();
         Dodge();
         Jump();
+        Sprite();
 
-        
 
     }
 }
