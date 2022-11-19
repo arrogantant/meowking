@@ -563,7 +563,6 @@ GameObject:
   - component: {fileID: 1844953098}
   - component: {fileID: 1844953097}
   - component: {fileID: 1844953095}
-  - component: {fileID: 1844953101}
   - component: {fileID: 1844953102}
   m_Layer: 0
   m_Name: Player
@@ -661,26 +660,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1844953101
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844953094}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a6059e05d9831240a03cb4f8c9cac90, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1844953102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,5 +674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpPower: 4
   Speed: 6
+  isAttacking: 0
   theSR: {fileID: 547666414}
   anim: {fileID: 547666415}
