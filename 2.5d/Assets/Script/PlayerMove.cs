@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     bool JDown;
     bool ADown;
     
-    public bool isAttacking = false;
 
     Vector3 moveVec;
     Vector3 dodgeVec;
@@ -27,14 +26,14 @@ public class PlayerMove : MonoBehaviour
     public SpriteRenderer theSR;
     public Animator anim;
 
-    public static PlayerMove instance;
+    
     
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
 
-        instance = this;
+     
     }
 
     private void Start()
@@ -66,6 +65,7 @@ public class PlayerMove : MonoBehaviour
 
         moveVec = dodgeVec;
         transform.position += moveVec * Speed * Time.deltaTime;
+        
 
 
     }
@@ -76,9 +76,10 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
             isJump = true;
-
-
+            anim.SetBool("isjump", true);
+            anim.SetTrigger("jump");
         }
+        
 
     }
 
@@ -89,9 +90,13 @@ public class PlayerMove : MonoBehaviour
             dodgeVec = moveVec;
             Speed *= 2;
             isDodge = true;
+            anim.SetBool("Dash", true);
 
             Invoke("DodgeOut", 0.4f);
+
         }
+        
+
     }
 
    
@@ -99,26 +104,27 @@ public class PlayerMove : MonoBehaviour
     {
         Speed *= 0.5f;
         isDodge = false;
+        anim.SetBool("Dash",false);
     }
 
     void Attack()
     {
-        if(ADown && !isAttacking)
+        if (ADown)
         {
-            isAttacking = true;
-            
+            anim.SetTrigger("atk");
         }
+
     }
     void Sprite()
     {
-        if (!theSR.flipX && hAxis < 0)
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            theSR.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        else if (theSR.flipX && hAxis > 0)
+        else if (Input.GetAxis("Horizontal") > 0)
         {
-            theSR.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
    
@@ -128,9 +134,11 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isJump = false;
-            
+            anim.SetBool("isjump", false);
         }
     }
+
+  
 
 
     void Update()

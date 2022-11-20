@@ -13,23 +13,24 @@ public class Weapon : MonoBehaviour
     {
             if(curTime <= 0)
             {
-                //c����
+                
                 if (Input.GetButtonDown("Fire1"))
                 {
                     Collider[] colliders = Physics.OverlapSphere(transform.position, 0);
                     foreach (Collider item in colliders)
-                {
                     
-                }
-               
-                    curTime = coolTime;
+
+                   curTime = coolTime;
                 }
             }
             else
             {
                 curTime -= Time.deltaTime;
             }
+
+
         
+            
     }
 
     private void OnDrawGizmos()
