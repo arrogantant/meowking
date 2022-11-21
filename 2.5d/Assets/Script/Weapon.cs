@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+
+    Rigidbody rig;
     private float curTime;
     public float coolTime = 0.5f;
     public Transform pos;
     public Vector3 Sphere;
+    public int damage;
+
+    private void Start()
+    {
+        
+    }
     void Attack()
     {
             if(curTime <= 0)
@@ -16,8 +24,11 @@ public class Weapon : MonoBehaviour
                 
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, 0);
-                    foreach (Collider item in colliders)
+                    Collider[] colliders = Physics.OverlapBox(pos.position, Sphere );
+                    foreach (Collider collider in colliders)
+                {
+                    Debug.Log(collider.tag);
+                }
                     
 
                    curTime = coolTime;
@@ -32,6 +43,8 @@ public class Weapon : MonoBehaviour
         
             
     }
+
+
 
     private void OnDrawGizmos()
     {

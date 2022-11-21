@@ -111,10 +111,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (ADown)
         {
+            
             anim.SetTrigger("atk");
         }
 
     }
+
+
     void Sprite()
     {
         if (Input.GetAxis("Horizontal") < 0)
@@ -130,15 +133,22 @@ public class PlayerMove : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-
+        //มกวม
         if (collision.gameObject.tag == "Ground")
         {
             isJump = false;
             anim.SetBool("isjump", false);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag== "EnemyBullet")
+        {
+            
+        }
+    }
 
-  
+
 
 
     void Update()
@@ -149,6 +159,6 @@ public class PlayerMove : MonoBehaviour
         Jump();
         Sprite();
         Attack();
-
+        
     }
 }
