@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public int maxHealth;
-    public int curHealth;
+    public int Hp;
 
-    Rigidbody rigid;
-    SphereCollider boxCollider;
     void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<SphereCollider>();
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Melee")
-        {
-            Weapon weapon = other.GetComponent<Weapon>();
-            curHealth -= weapon.damage;
-        }
     }
     void Update()
     {
         
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Hp = Hp - damage;
     }
 }

@@ -33,7 +33,6 @@ public class PlayerMove : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
 
-     
     }
 
     private void Start()
@@ -110,8 +109,7 @@ public class PlayerMove : MonoBehaviour
     void Attack()
     {
         if (ADown)
-        {
-            
+        {         
             anim.SetTrigger("atk");
         }
 
@@ -133,21 +131,13 @@ public class PlayerMove : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-        //Á¡ÇÁ
+        //Á¡ÇÁ ¶¥¿¡ ´ê±â
         if (collision.gameObject.tag == "Ground")
         {
             isJump = false;
             anim.SetBool("isjump", false);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag== "EnemyBullet")
-        {
-            
-        }
-    }
-
 
 
 

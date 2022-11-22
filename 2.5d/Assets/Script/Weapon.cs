@@ -6,7 +6,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    Rigidbody rig;
     private float curTime;
     public float coolTime = 0.5f;
     public Transform pos;
@@ -27,7 +26,10 @@ public class Weapon : MonoBehaviour
                     Collider[] colliders = Physics.OverlapBox(pos.position, Sphere );
                     foreach (Collider collider in colliders)
                 {
-                    Debug.Log(collider.tag);
+                    if(collider.tag == "Enemy")
+                    {
+                        collider.GetComponent<Monster>().TakeDamage(1);
+                    }
                 }
                     
 
