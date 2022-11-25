@@ -26,13 +26,12 @@ public class PlayerMove : MonoBehaviour
     public SpriteRenderer theSR;
     public Animator anim;
 
-    
-    
+
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-
+        
     }
 
     private void Start()
@@ -106,15 +105,7 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("Dash",false);
     }
 
-    void Attack()
-    {
-        if (ADown)
-        {         
-            anim.SetTrigger("atk");
-        }
-
-    }
-
+    
 
     void Sprite()
     {
@@ -148,7 +139,7 @@ public class PlayerMove : MonoBehaviour
         Dodge();
         Jump();
         Sprite();
-        Attack();
+
         
     }
 }

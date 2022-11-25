@@ -36,14 +36,14 @@ public class Weapon : MonoBehaviour
                    curTime = coolTime;
                 }
             }
-            else
-            {
-                curTime -= Time.deltaTime;
-            }
+        else
+        {
+            curTime -= Time.deltaTime;
+        }
 
 
-        
-            
+
+
     }
 
 
