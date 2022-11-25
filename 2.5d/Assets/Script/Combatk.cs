@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Combatk : MonoBehaviour
@@ -8,6 +9,7 @@ public class Combatk : MonoBehaviour
     public int no0fClicks = 0;
     float lastClickedTime = 0;
     public float maxComboDelay;
+    
 
     void Start()
     {
@@ -29,6 +31,11 @@ public class Combatk : MonoBehaviour
             if(no0fClicks == 1)
             {
                 anim.SetBool("atk1", true);
+                //공격할때 속도감소
+                PlayerMove call = GameObject.Find("Player").GetComponent<PlayerMove>();
+                call.Speed = 0;
+
+
             }
             no0fClicks = Mathf.Clamp(no0fClicks, 0, 2);
         }
@@ -43,7 +50,9 @@ public class Combatk : MonoBehaviour
         else
         {
             anim.SetBool("atk1", false);
-            no0fClicks = 0;
+            //공격할때 속도감소
+            no0fClicks = 0; PlayerMove call = GameObject.Find("Player").GetComponent<PlayerMove>();
+            call.Speed = 6;
         }
     }
     public void return2()
@@ -51,6 +60,8 @@ public class Combatk : MonoBehaviour
         anim.SetBool("atk1", false);
         anim.SetBool("atk2", false);
         no0fClicks = 0;
+        PlayerMove call = GameObject.Find("Player").GetComponent<PlayerMove>();
+        call.Speed = 6;
     }
 
 }

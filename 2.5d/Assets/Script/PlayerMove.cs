@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     bool isJump;
     bool JDown;
     bool ADown;
+    bool isAtk;
     
 
     Vector3 moveVec;
@@ -36,7 +37,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
 
@@ -97,6 +98,15 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    void Attack()
+    {
+        if (ADown) 
+        {
+            Speed = 0;
+        }
+        
+    }
+
    
     void DodgeOut()
     {
@@ -105,7 +115,6 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("Dash",false);
     }
 
-    
 
     void Sprite()
     {
@@ -139,7 +148,7 @@ public class PlayerMove : MonoBehaviour
         Dodge();
         Jump();
         Sprite();
+        Attack();
 
-        
     }
 }
