@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
                 {
                     Collider[] colliders = Physics.OverlapBox(pos.position, Sphere );
                     foreach (Collider collider in colliders)
+
                 {
                     if(collider.tag == "Enemy")
                     {

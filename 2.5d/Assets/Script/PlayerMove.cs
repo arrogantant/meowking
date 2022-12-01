@@ -14,13 +14,14 @@ public class PlayerMove : MonoBehaviour
     float vAxis;
     bool jDown;
     bool isDodge;
-    bool isJump;
+    public bool isJump;
     bool JDown;
     bool ADown;
     bool isAtk;
-    
 
-    Vector3 moveVec;
+
+
+    public Vector3 moveVec;
     Vector3 dodgeVec;
 
     Rigidbody rigid;
@@ -82,9 +83,10 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+ 
     void Dodge()
     {
-        if (jDown && !isDodge)
+        if (jDown && moveVec != Vector3.zero && !isDodge)
         {
             dodgeVec = moveVec;
             Speed *= 2;
@@ -98,14 +100,8 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void Attack()
-    {
-        if (ADown) 
-        {
-            Speed = 0;
-        }
-        
-    }
+
+
 
    
     void DodgeOut()
@@ -139,6 +135,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    
 
 
     void Update()
@@ -148,7 +145,6 @@ public class PlayerMove : MonoBehaviour
         Dodge();
         Jump();
         Sprite();
-        Attack();
 
     }
 }
